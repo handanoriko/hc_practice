@@ -7,11 +7,10 @@ selected_month = Date.today.month
 opt = OptionParser.new
 opt.on('-m MONTH') do |v|
   month_number = v.to_i
-  if month_number > 0 && month_number < 13
+  if (1..12).cover?(month_number)
     selected_month = month_number
   else
-    puts "#{v} is neither a month number (1..12) nor a name"
-    exit(1)
+    raise "#{v} is neither a month number (1..12) nor a name"
   end
 end
 
