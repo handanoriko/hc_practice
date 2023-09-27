@@ -1,32 +1,30 @@
-input = gets.chomp.split(",").map(&:to_i)
-input2 = gets.chomp.split(",").map(&:to_i)
-
-result = input.zip(input2).map { |x, y| y - x }
+input = gets.chomp.split(',').map(&:to_i)
+input2 = gets.chomp.split(',').map(&:to_i)
 output = []
-result.each do |score|
-  x, y = input.zip(input2).find { |a, b| b - a == score }
+input.zip(input2).map do |x, y|
+  score = y - x
 
-  if x == 3 && y == 1
-    output << "ホールインワン"
-  elsif x == 4 && y == 1
-    output << "ホールインワン"
-  elsif x == 5 && y == 2
-    output << "アルバトロス"
-  elsif x == 5 && y == 1
-    output << "コンドル"
-  elsif x == 4 && y == 2
-    output << "イーグル"
-  elsif  x == 5 && y == 3
-    output << "イーグル"
-  elsif score == 0
-    output << "パー"
-  elsif score == -1
-    output << "バーディ"
-  elsif score == 1
-    output << "ボギー"
-  else
-    output << "#{score}ボギー"
-  end
+  output << if x == 3 && y == 1
+              'ホールインワン'
+            elsif x == 4 && y == 1
+              'ホールインワン'
+            elsif x == 5 && y == 2
+              'アルバトロス'
+            elsif x == 5 && y == 1
+              'コンドル'
+            elsif x == 4 && y == 2
+              'イーグル'
+            elsif x == 5 && y == 3
+              'イーグル'
+            elsif score.zero?
+              'パー'
+            elsif score == -1
+              'バーディ'
+            elsif score == 1
+              'ボギー'
+            else
+              "#{score}ボギー"
+            end
 end
 
-puts output.join(",")
+puts output.join(',')
