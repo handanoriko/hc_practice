@@ -1,18 +1,15 @@
+# Suicaクラスはスイカのチャージと残高を表現します。
 class Suica
     def initialize
-        @price = 500
+      @price = 500
     end
-
-    def price
-        @price
-    end
-
-    def price=(price)
-        @price = price
-    end
-
+  
+    attr_writer :price
+    attr_reader :price
+  
     def charge(amount)
-        raise "チャージは100円以上からです" if amount < 100 && 1 < amount
-        @price += amount
+      raise 'チャージは100円以上からです' if amount < 100 && amount > 1
+  
+      @price += amount
     end
-end
+  end

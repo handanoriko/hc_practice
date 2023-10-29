@@ -1,64 +1,54 @@
 require_relative './suica'
 require_relative './juice'
 
+# Vendingmachineクラスは自動販売機の機能を表現します。
 class Vendingmachine
   def initialize
+    @juices = [
+      Juice.new('pepsi', 5, 150),
+      Juice.new('monster', 5, 230),
+      Juice.new('irohasu', 5, 120)
+    ]
     @sales = 0
-    @juice = Juice.new
-    @salesNum = @juice.num
     @suica = Suica.new
   end
 
-  def purchase(juice_kinds, amount)
-    juice_num = @juice.num
-    @juice.kinds = juice_kinds
-    # @juice.calculate_price
-    amount = @suica.charge(amount)
-    p "◆◆◆◆◆◆◆◆◆◆◆◆amount#{amount}"
-    
-    # total_price = @juice.price * salesNum
-    price = @juice.price
-    # p @juice.price
-    juice_num = @juice.num
-    
-    
-    # juice_num = @salesNum - 1
+  def purchase(juice_name)
+    juice = @juices.find { |j| j.name == juice_name.to_s }
 
-    # p "salesNum #{salesNum}"
-   
-    # p "juice_num #{juice_num}"
+    if @suica.price < juice.price
+      raise '残高が足りません'
+    elsif juice.num <= 0
+      raise '在庫がありません'
 
-    # juice_num -= salesNum
-    @sales +=  price
-    salesPrice = amount - @sales
+    else
+      @sales += juice.price
+      @suica.price -= juice.price
+      juice.num -= 1
 
-    if salesPrice >=  price
-      @salesNum -= 1
-      # p "#{salesPrice}salesPrice"
-      # p "#{price}price"
-      # p @juice.calculate_price
-      # p "salesNum #{@salesNum}"
-    # @sales += total_price
-    # 
+      puts "■1本の#{juice.name}を#{juice.price}円で購入しました。price"
+      puts "#{juice.name}の残数は#{juice.num}本"
+      puts "Suicaのチャージ残高は#{@suica.price}円salesPrice"
+      puts "売上金額: #{@sales}円-----"
 
-    # suica.deduct(total_price)
-
-    # p amount
-    # p salesPrice
-    # p juice_num
-    puts "1本の#{@juice.kinds}を#{price}円で購入しました。price"
-    puts "Suicaのチャージ残高は#{salesPrice}円salesPrice"
-    puts "juiceの残数は#{@salesNum}本"
-    puts "売上高: #{@sales}円"
-    # puts @juice.juice_info
+      @juices.each do |juice|
+        puts "購入可能なドリンクのリストは#{juice.name} #{juice.num}本"
+      end
     end
-
-    
-      raise "残高が足りません" if salesPrice < price
-      raise "在庫がありません" if @salesNum < 0
-
   end
 
+  def add(amount)
+    @suica.charge(amount)
+    puts "Suicaのチャージ残高は#{@suica.price}円salesPrice"
+  end
+
+  def assort(juice_name, stock)
+    juice = @juices.find { |j| j.name == juice_name.to_s }
+    juice.num += stock
+    puts "#{juice.name}の残数を#{stock}本追加"
+
+    @juices.each do
+      puts "購入可能なドリンクのリストは#{juice.name} #{juice.num}本"
+    end
+  end
 end
-
-
