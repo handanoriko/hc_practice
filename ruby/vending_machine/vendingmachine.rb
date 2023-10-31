@@ -29,10 +29,6 @@ class Vendingmachine
     puts "■1本の#{juice.name}を#{juice.price}円で購入しました。"
     puts "#{juice.name}の残数は#{juice.num}本"
     puts "売上金額: #{@sales}円"
-
-    @juices.each do
-      puts "購入可能なドリンクのリストは#{juice.name} #{juice.num}本"
-    end
   end
 
   def add(amount)
@@ -45,6 +41,14 @@ class Vendingmachine
     @suica.price -= juice.price
   end
 
+  def list
+    puts '購入可能なドリンクのリストは'
+
+    @juices.each do |juice|
+      puts "#{juice.name} #{juice.num}本"
+    end
+  end
+
   def assort(juice_name, stock)
     juice = @juices.find { |j| j.name == juice_name.to_s }
 
@@ -52,8 +56,9 @@ class Vendingmachine
 
     puts "#{juice_name}の残数を#{stock}本追加"
 
+    puts '購入可能なドリンクのリストは'
     @juices.each do
-      puts "購入可能なドリンクのリストは#{juice_name} #{juice.num}本"
+      puts "#{juice.name} #{juice.num}本"
     end
   end
 end

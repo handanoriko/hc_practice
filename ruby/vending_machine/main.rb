@@ -10,3 +10,4 @@ vendingmachine.purchase('pepsi')
 vendingmachine.assort('pepsi', 1)
 vendingmachine.purchase('monster')
 vendingmachine.assort('monster', 1)
+vendingmachine.list
