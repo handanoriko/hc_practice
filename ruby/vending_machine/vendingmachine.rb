@@ -16,39 +16,44 @@ class Vendingmachine
   def purchase(juice_name)
     juice = @juices.find { |j| j.name == juice_name.to_s }
 
-    if @suica.price < juice.price
-      raise '残高が足りません'
-    elsif juice.num <= 0
-      raise '在庫がありません'
+    raise '残高が足りません' if @suica.price < juice.price
 
-    else
-      @sales += juice.price
-      @suica.price -= juice.price
-      juice.num -= 1
+    raise '在庫がありません' if juice.num <= 0
 
-      puts "■1本の#{juice.name}を#{juice.price}円で購入しました。price"
-      puts "#{juice.name}の残数は#{juice.num}本"
-      puts "Suicaのチャージ残高は#{@suica.price}円salesPrice"
-      puts "売上金額: #{@sales}円-----"
+    @sales += juice.price
 
-      @juices.each do |juice|
-        puts "購入可能なドリンクのリストは#{juice.name} #{juice.num}本"
-      end
+    juice.reduce_stock
+
+    @suica.pay(juice.price)
+
+    puts "■1本の#{juice.name}を#{juice.price}円で購入しました。"
+    puts "#{juice.name}の残数は#{juice.num}本"
+    puts "売上金額: #{@sales}円"
+
+    @juices.each do
+      puts "購入可能なドリンクのリストは#{juice.name} #{juice.num}本"
     end
   end
 
   def add(amount)
     @suica.charge(amount)
-    puts "Suicaのチャージ残高は#{@suica.price}円salesPrice"
+    puts "#{amount}円をチャージしてSuicaのチャージ残高は#{@suica.price}円"
+  end
+
+  def pay(money)
+    @suica.pay(money)
+    @suica.price -= juice.price
   end
 
   def assort(juice_name, stock)
     juice = @juices.find { |j| j.name == juice_name.to_s }
-    juice.num += stock
-    puts "#{juice.name}の残数を#{stock}本追加"
+
+    juice.lot(stock)
+
+    puts "#{juice_name}の残数を#{stock}本追加"
 
     @juices.each do
-      puts "購入可能なドリンクのリストは#{juice.name} #{juice.num}本"
+      puts "購入可能なドリンクのリストは#{juice_name} #{juice.num}本"
     end
   end
 end

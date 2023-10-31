@@ -6,6 +6,13 @@ class Juice
     @price = price
   end
 
-  attr_writer :name, :num
   attr_reader :price, :name, :num
+
+  def lot(stock)
+    @num += stock
+  end
+
+  def reduce_stock
+    @num -= 1 if @num.positive?
+  end
 end
