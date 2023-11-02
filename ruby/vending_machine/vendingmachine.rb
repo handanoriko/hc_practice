@@ -21,11 +21,9 @@ class Vendingmachine
 
     @sales += juice.price
 
-    suica.charge(-juice.price)
+    suica.reduce_fee(juice.price)
 
     juice.reduce_stock
-
-    # @suica.charge
 
     puts "■1本の#{juice.name}を#{juice.price}円で購入しました。"
     puts "#{juice.name}の残数は#{juice.num}本"
@@ -34,6 +32,7 @@ class Vendingmachine
 
   def charge(amount, suica)
     suica.charge(amount)
+
     puts "#{amount}円をチャージしてSuicaのチャージ残高は#{suica.balance}円"
   end
 

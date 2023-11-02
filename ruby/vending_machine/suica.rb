@@ -11,4 +11,9 @@ class Suica
 
     @balance += amount
   end
+
+  def reduce_fee(fee)
+    @balance -= fee
+    puts "残高: #{@balance}円"
+  end
 end
