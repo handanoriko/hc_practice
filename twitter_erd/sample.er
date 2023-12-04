@@ -1,0 +1,76 @@
+[users]
+  *user_id {label: "bigint, not null"}
+  display_name {label: "varchar, null"}
+  email {label: "varchar, not null, uniq"}
+  avater_image {label: "varchar, not null"}
+  created_at { label: "datatime, not null"}
+  updated_at { label: "datatime, not null"}
+
+[posts] {bgcolor: "#d0e0d0"}
+  *id {label: "bigint, not null"}
+  user_id {label: "bigint, not null, FK(users)"}
+  name {label: "varchar, not null"}
+  title {label: "varchar, not null"}
+  image {label: "varchar, not null"}
+  created_at { label: "datatime, not null"}
+  updated_at { label: "datatime, not null"}
+
+[profiles] {bgcolor: "#d0e0d0"}
+  *id {label: "bigint, not null"}
+  user_id {label: "bigint, not null, FK(users)"}
+  tel {label: "number, not null"}
+  introduce_text {label: "varchar, not null"}
+  place {label: "varchar, not null"}
+  website {label: "varchar, not null"}
+  birthday {label: "varchar, not null"}
+  profile_image {label: "varchar, not null"}
+  created_at { label: "datatime, not null"}
+  updated_at { label: "datatime, not null"}
+
+[goods] {bgcolor: "#d0e0d0"}
+  *id {label: "bigint, not null"}
+  user_id {label: "bigint, not null, FK(users)"}
+  post_id {label: "varchar, not null, FK(posts)"}
+  name {label: "varchar, not null"}
+  created_at { label: "datatime, not null"}
+  updated_at { label: "datatime, not null"}
+
+[comments] {bgcolor: "#d0e0d0"}
+  user_id {label: "bigint, not null, FK(users)"}
+  post_id {label: "varchar, not null, FK(posts)"}
+  name {label: "varchar, not null"}
+  text {label: "varchar, not null"}
+  created_at { label: "datatime, not null"}
+  updated_at { label: "datatime, not null"}
+
+[followers] {bgcolor: "#d0e0d0"}
+  *id {label: "varchar, not null"}
+  user_id {label: "bigint, not null, FK(users)"}
+  followee_id {label: "varchar, not null, FK(followees)"}
+  name {label: "varchar, not null"}
+  text {label: "varchar, not null"}
+  created_at { label: "datatime, not null"}
+  updated_at { label: "datatime, not null"}
+
+[followees] {bgcolor: "#d0e0d0"}
+  *id {label: "varchar, not null"}
+  user_id {label: "bigint, not null, FK(users)"}
+  follower_id {label: "varchar, not null, FK(followers)"}
+  created_at { label: "datatime, not null"}
+  updated_at { label: "datatime, not null"}
+
+
+# Cardinality    Syntax
+# 0 or 1         ?
+# exactly 1      1
+# 0 or more      *
+# 1 or more      +
+
+posts *--1 users
+profiles *--1 users
+followers *--1 users
+followees *--1 users
+
+posts 1--* comments
+posts 1--* goods
+
