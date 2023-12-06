@@ -27,6 +27,8 @@
   updated_at { label: "datatime, not null"}
 
 [goods] {bgcolor: "#d0e0d0"}
+  user_id {label: "bigint, not null, FK(users)"}
+  post_id {label: "bigint, not null, FK(posts)"}
   created_at { label: "datatime, not null"}
   updated_at { label: "datatime, not null"}
 
@@ -44,6 +46,23 @@
   created_at { label: "datatime, not null"}
   updated_at { label: "datatime, not null"}
 
+[reposts] {bgcolor: "#d0e0d0"}
+  user_id {label: "bigint, not null, FK(users)"}
+  post_id {label: "bigint, not null, FK(posts)"}
+
+[dms] {bgcolor: "#d0e0d0"}
+  user_id {label: "bigint, not null, FK(users)"}
+  post_id {label: "bigint, not null, FK(posts)"}
+
+[nortifications] {bgcolor: "#d0e0d0"}
+  user_id {label: "bigint, not null, FK(users)"}
+  post_id {label: "bigint, not null, FK(posts)"}
+  followee_id {label: "bigint, not null, FK(followees)"}
+
+[bookmarks] {bgcolor: "#d0e0d0"}
+  user_id {label: "bigint, not null, FK(users)"}
+  post_id {label: "bigint, not null, FK(posts)"}
+
 
 
 # Cardinality    Syntax
@@ -56,7 +75,13 @@ posts *--1 users
 profiles *--1 users
 followers *--1 users
 followees *--1 users
+dms *--1 users
+nortifications *--1 users
 
 posts 1--* comments
 posts 1--* goods
+posts 1--* reposts
+posts 1--* bookmarks
 
+nortifications 1--* goods
+nortifications 1--* followees
