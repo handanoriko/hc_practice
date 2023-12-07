@@ -50,9 +50,10 @@
   user_id {label: "bigint, not null, FK(users)"}
   post_id {label: "bigint, not null, FK(posts)"}
 
-[dms] {bgcolor: "#d0e0d0"}
+[direct_messages] {bgcolor: "#d0e0d0"}
   user_id {label: "bigint, not null, FK(users)"}
   post_id {label: "bigint, not null, FK(posts)"}
+  contents {label: "varchar, not null"}
 
 [nortifications] {bgcolor: "#d0e0d0"}
   user_id {label: "bigint, not null, FK(users)"}
@@ -75,7 +76,7 @@ posts *--1 users
 profiles *--1 users
 followers *--1 users
 followees *--1 users
-dms *--1 users
+direct_messages *--1 users
 nortifications *--1 users
 
 posts 1--* comments
