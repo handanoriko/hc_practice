@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Todo App</title>
+    <link href="dist/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <div class="w-3/5 mx-auto mt-20 border-2 p-6">
+        <div class="text-3xl font-bold text-center mb-8">ToDoリスト
+        </div>
+        <div class="todoapp">
+          <form id="js-form" class="mb-8">
+            <input
+              id="js-form-input"
+              class="border p-2 w-10/12"
+              type="text"
+              placeholder=""
+              autocomplete="off"
+            />
+            <input type="submit" value="保存" class="rounded-2xl bg-slate-300 py-1 px-6 ml-1"/>
+          </form>
+          <ul id="js-todo-list" class="todo-list">
+          </ul>
+          <div class="text-gray-600 text-end mt-4">
+            <span id="js-todo-allCount">全てのタスク: 0</span>
+            <span id="js-todo-completeCount">完了済み: 0</span>
+            <span id="js-todo-imcompleteCount">未完了: 0</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="./index.js" type="module"></script>
+  </body>
+</html>

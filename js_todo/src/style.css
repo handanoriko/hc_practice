@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.todo-list li input[type="checkbox"] {
+    width: 30px;
+    height: auto;
+    margin: auto 0;
+    border: none;
+}
