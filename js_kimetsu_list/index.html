@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>鬼滅の刃のキャラクター一覧</title>
+    <link href="dist/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <div id="loading">
+        <div class="loader"></div>
+      </div>
+      
+      <div class="w-3/5 mx-auto mt-20 p-6">
+        <h1 class="text-center text-2xl mb-12 font-bold">鬼滅の刃のキャラクター一覧</h1>
+        <div id="js-radio">
+          <ul id="" class="flex justify-center items-center gap-8 mb-10">
+            <li class="">
+              <input type="radio" id="contactChoice1" name="kimetsu" value="1" checked />
+              <label for="choice1">全キャラクター</label>
+            </li>
+            <li class="">
+              <input type="radio" id="contactChoice2" name="kimetsu" value="2" />
+              <label for="choice2">鬼殺隊</label>
+            </li>
+            <li class="">
+              <input type="radio" id="contactChoice3" name="kimetsu" value="3" />
+              <label for="choice3">柱</label>
+            </li>
+            <li class="">
+              <input type="radio" id="contactChoice4" name="kimetsu" value="4" />
+              <label for="choice4">鬼</label>
+            </li>
+          </ul>
+          <div id="content1" class="radio-content">
+            <table class="w-full table-auto border-collapse">
+              <tr>
+                <th>名前</th>
+                <th>画像</th>
+                <th>カテゴリ</th>
+              </tr>
+              <tr class="content-item"></tr>
+            </table>
+          </div>
+          <div id="content2" class="hidden radio-content">
+            <table class="w-full table-auto border-collapse">
+              <tr>
+                <th>名前</th>
+                <th>画像</th>
+                <th>カテゴリ</th>
+              </tr>
+              <tr class="content-item"></tr>
+            </table>
+          </div>
+          <div id="content3" class="hidden radio-content">
+            <table class="w-full table-auto border-collapse">
+              <tr>
+                <th>名前</th>
+                <th>画像</th>
+                <th>カテゴリ</th>
+              </tr>
+              <tr class="content-item"></tr>
+            </table>
+          </div>
+          <div id="content4" class="hidden radio-content">
+            <table class="w-full table-auto border-collapse">
+              <tr>
+                <th>名前</th>
+                <th>画像</th>
+                <th>カテゴリ</th>
+              </tr>
+              <tr class="content-item"></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="./script.js" type="module"></script>
+  </body>
+</html>
