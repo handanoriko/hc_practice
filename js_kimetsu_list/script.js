@@ -1,7 +1,7 @@
-const content1 = document.getElementById("content1");
+const contentAll = document.getElementById("content_all");
 const radios = document.querySelectorAll('input[type="radio"]');
 const radioContents = document.querySelectorAll('.radio-content');
-const contentItemTop = content1.querySelector(".content-item");
+const contentItemTop = contentAll.querySelector(".content-item");
 const loading = document.getElementById("loading");
 
 const apiUrls = {
@@ -30,26 +30,26 @@ const topApiList = async () => {
         const data = await response.json();
         hideLoading();
 
-            data.forEach(item => {
-                const name = item.name;
-                const category= item.category;
-                const img= item.image;
+        data.forEach(item => {
+            const name = item.name;
+            const category= item.category;
+            const img= item.image;
 
-                const charaName = document.createElement('td');
-                charaName.textContent = name;
+            const charaName = document.createElement('td');
+            charaName.textContent = name;
 
-                const charaImg = document.createElement('td');
-                const imgTag = document.createElement('img');
-                imgTag.src = path + img;
+            const charaImg = document.createElement('td');
+            const imgTag = document.createElement('img');
+            imgTag.src = path + img;
 
-                const charaCategory = document.createElement('td');
-                charaCategory.textContent = category;
+            const charaCategory = document.createElement('td');
+            charaCategory.textContent = category;
 
-                contentItemTop.appendChild(charaName);
-                contentItemTop.appendChild(charaImg);
-                charaImg.appendChild(imgTag);
-                contentItemTop.appendChild(charaCategory);
-            }) ;
+            contentItemTop.appendChild(charaName);
+            contentItemTop.appendChild(charaImg);
+            charaImg.appendChild(imgTag);
+            contentItemTop.appendChild(charaCategory);
+        }) ;
 
     } catch (error) {
         console.error("API取得中にエラーが発生しました", error);
@@ -97,14 +97,14 @@ radios.forEach(radio => { radio.addEventListener("click", async () => {
             radioContent.classList.add("hidden");
         })
 
-        const targetContent = document.getElementById(`content${radio.value}`);
+        const targetContent = document.getElementById(`content_${radio.value}`);
         if (targetContent) {
             targetContent.classList.remove('hidden');
         }
 
         const contentItems = targetContent.querySelectorAll(".content-item");
 
-        const apiUrl = apiUrls[radio.value];
+        const apiUrl = `https://ihatov08.github.io/kimetsu_api/api/${radio.value}.json`
 
         showLoading();
         await getApiList(apiUrl, contentItems);
@@ -112,4 +112,4 @@ radios.forEach(radio => { radio.addEventListener("click", async () => {
         });
 });
 
-window.addEventListener('load', () => topApiList());
+window.addEventListener('load', topApiList);
