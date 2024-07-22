@@ -3,14 +3,6 @@ const radios = document.querySelectorAll('input[type="radio"]');
 const radioContents = document.querySelectorAll('.radio-content');
 const contentItemTop = contentAll.querySelector(".content-item");
 const loading = document.getElementById("loading");
-
-const apiUrls = {
-    1: 'https://ihatov08.github.io/kimetsu_api/api/all.json',
-    2: 'https://ihatov08.github.io/kimetsu_api/api/kisatsutai.json',
-    3: 'https://ihatov08.github.io/kimetsu_api/api/hashira.json',
-    4: 'https://ihatov08.github.io/kimetsu_api/api/oni.json'
-};
-
 const path = "https://ihatov08.github.io";
 
 const showLoading = () =>{
